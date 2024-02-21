@@ -13,7 +13,9 @@ phases:
       - echo log in to Amazon ECR...
       - aws --version
       - echo $AWS_DEFAULT_REGION
-      - aws ecr get-login-password --region ap-southeast-2 | docker login --username AWS --password-stdin 847664374589.dkr.ecr.ap-southeast-2.amazonaws.com/ci_cd_workshop
+      - aws ecr get-login-password --region ap-southeast-2 | docker login
+        --username AWS --password-stdin
+        847664374589.dkr.ecr.ap-southeast-2.amazonaws.com/ci_cd_workshop
       - REPOSITORY_URI=847664374589.dkr.ecr.ap-southeast-2.amazonaws.com/ci_cd_workshop
       - COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
       - IMAGE_TAG=${COMMIT_HASH:=latest}
@@ -31,5 +33,3 @@ phases:
       - echo write definitions file...
       - printf '[{"name":"exp-code-pipeline","imageUri":"%s"}]'
         $REPOSITORY_URI:$IMAGE_TAG > imagedefinitions.json
-artifacts:
-  files: imagedefinitions.json
