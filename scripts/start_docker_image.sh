@@ -5,6 +5,13 @@
 # Tên của Docker container muốn khởi chạy
 CONTAINER_NAME="ci_cd_workshop"
 
+# Kiểm tra xem container đã tồn tại hay không
+if [ "$(docker ps -a -q -f name=$CONTAINER_NAME)" ]; then
+    # Nếu container tồn tại, thì stop và xóa container cũ
+    docker stop $CONTAINER_NAME
+    docker rm $CONTAINER_NAME
+fi
+
 # Tên của Docker image muốn sử dụng để khởi chạy container
 DOCKER_IMAGE="847664374589.dkr.ecr.ap-southeast-2.amazonaws.com/ci_cd_workshop:latest"
 
