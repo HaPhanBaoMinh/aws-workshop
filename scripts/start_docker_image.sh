@@ -9,7 +9,7 @@ CONTAINER_NAME="ci_cd_workshop"
 DOCKER_IMAGE="847664374589.dkr.ecr.ap-southeast-2.amazonaws.com/ci_cd_workshop:latest"
 
 # Thực hiện start Docker container và map cổng 80 trên máy host với cổng 300 trên container
-docker run -d --name $CONTAINER_NAME -p 80:300 $DOCKER_IMAGE
+docker run -d --name $CONTAINER_NAME -p 80:3000 $DOCKER_IMAGE
 
 # Kiểm tra xem container đã khởi chạy thành công hay không
 if [ $? -eq 0 ]; then
